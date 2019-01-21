@@ -1,5 +1,10 @@
 package pl.monteth.po.sklep.Models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +21,8 @@ public class Pupil {
     private String lastName;
 
     @ManyToOne
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "patron_id_patron")
+    @JsonIdentityReference(alwaysAsId = true)
     private Patron patron;
 
     public Patron getPatron() {
