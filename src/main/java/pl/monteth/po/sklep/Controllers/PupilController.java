@@ -26,10 +26,9 @@ public class PupilController {
     @GetMapping(path = "/account/pupils/{id}")
     @ResponseBody
     public ResponseEntity getPupils(@PathVariable(name = "id") String name) {
-        System.out.println(name);
         Long id = Long.valueOf(name);
-        System.out.println(id);
-
         return new ResponseEntity<>(pupilRepository.findPupilsIdByPatronId(id), HttpStatus.OK);
     }
+
+
 }

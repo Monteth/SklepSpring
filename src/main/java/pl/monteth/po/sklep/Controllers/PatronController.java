@@ -22,7 +22,7 @@ public class PatronController {
 
 
     @GetMapping(path = "/patron/{email}")
-    public Patron getProteges(@PathVariable String email){
+    public Patron getPatron(@PathVariable String email){
         return patronRepository.getPatronByEmail(email);
     }
 }

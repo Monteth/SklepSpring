@@ -17,8 +17,6 @@ public class RestrictionsController {
 
     @GetMapping(path = "/restrictions")
     public ResponseEntity<RestrictionsBean> getRestrictions(){
-//        List pegi = repo.getPegiRestrictions();
-//        List content = repo.getContentRestrictions();
         List<String> content = new ArrayList<String>();
         content.add("Sex");
         content.add("Fear");

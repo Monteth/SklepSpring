@@ -21,9 +21,22 @@ public class Pupil {
     private String lastName;
 
     @ManyToOne
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "patron_id_patron")
     @JsonIdentityReference(alwaysAsId = true)
     private Patron patron;
+
+    public Pupil(String email) {
+        this.email = email;
+    }
+
+    public Pupil() {
+    }
+
+    public Pupil(String email, String firstName, String lastName, Patron patron) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patron = patron;
+    }
 
     public Patron getPatron() {
         return patron;
