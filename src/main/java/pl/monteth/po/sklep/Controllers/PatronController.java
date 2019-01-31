@@ -11,7 +11,7 @@ import pl.monteth.po.sklep.Repositories.PatronRepository;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "/patrons")
+@RequestMapping(path = "/api/patrons")
 @RestController
 public class PatronController {
 
@@ -23,7 +23,7 @@ public class PatronController {
     }
 
 
-//    DEPRECATED
+//    @Deprecated
 //    @GetMapping(path = "/{email}")
 //    public Patron getPatron(@PathVariable String email) {
 //        return patronRepository.getPatronByEmail(email);
@@ -67,7 +67,7 @@ public class PatronController {
     }
 
     private boolean isPatronValid(Patron patron){
-        return true;
+        return false;
     }
 }
 
