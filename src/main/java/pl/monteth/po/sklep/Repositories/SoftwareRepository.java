@@ -10,13 +10,13 @@ public interface SoftwareRepository extends CrudRepository<Software, Long> {
 
 
     @Query(
-            value = "select * from Software where lower(name) like (lower(?1)) order by random() limit 3",
+            value = "select * from Software where lower(name) like (lower(?1)) order by random() limit ?2",
             nativeQuery = true
     )
-    public List<Software> findSoftwaresByNameLike(String name);
+    public Iterable<Software> findSoftwaresByNameLike(String name, Integer limit);
 
     @Query(
             value = "select * from Software order by random() limit ?1",
             nativeQuery = true)
-    public List<Software> findRandomSoftware(Integer number);
+    public Iterable<Software> findRandomSoftware(Integer limit);
 }
