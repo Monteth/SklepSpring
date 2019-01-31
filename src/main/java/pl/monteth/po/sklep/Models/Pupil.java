@@ -22,6 +22,10 @@ public class Pupil {
 
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
+    private Pegi pegi;
+
+    @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
     private Patron patron;
 
     public Pupil(String email) {
