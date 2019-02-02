@@ -14,13 +14,13 @@ public interface PupilRepository extends CrudRepository<Pupil, Long> {
             nativeQuery = true)
     public List<Pupil> findPupilsIdByPatronId(Long id);
 
-    @Query(
-            value = "select * " +
-                    "from limitation lim " +
-                    "right join limit_restriction lr " +
-                    "on lim.id_limit = lr.limitation_id_limit " +
-                    "where lr.pupil_id_pupil = ?1",
-            nativeQuery = true
-    )
-    public List<Limitation> findLimitByPupilId(Long id);
+//    @Query(
+//            value = "select * " +
+//                    "from limitation lim " +
+//                    "right join limit_restriction lr " +
+//                    "on lim.id_limit = lr.limitation_id_limit " +
+//                    "where lr.pupil_id_pupil = ?1",
+//            nativeQuery = true
+//    )
+//    public List<Limitation> findLimitByPupilId(Long id);
 }
