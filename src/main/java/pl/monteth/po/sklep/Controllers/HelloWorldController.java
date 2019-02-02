@@ -1,13 +1,11 @@
 package pl.monteth.po.sklep.Controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.monteth.po.sklep.Beans.HelloBean;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@RequestMapping(path = "/api")
 public class HelloWorldController {
     //@RequestMapping(method = RequestMethod.GET, path = "/hello")
     @GetMapping(path = "/hello")  // same result
