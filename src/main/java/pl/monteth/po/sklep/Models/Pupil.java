@@ -1,17 +1,16 @@
 package pl.monteth.po.sklep.Models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
+import java.util.Map;
 
 @Entity
 public class Pupil {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPupil;
 
     private String email;
@@ -22,10 +21,12 @@ public class Pupil {
 
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@idPegi")
     private Pegi pegi;
 
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@idPatron")
     private Patron patron;
 
     public Pupil(String email) {
@@ -35,11 +36,28 @@ public class Pupil {
     public Pupil() {
     }
 
-    public Pupil(String email, String firstName, String lastName, Patron patron) {
+    public Pupil(String email, String firstName, String lastName, Pegi pegi, Patron patron) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.pegi = pegi;
         this.patron = patron;
+    }
+//
+//    @SuppressWarnings("unchecked")
+//    @JsonProperty("patron")
+//    private void pack(Map<String,Object> patron) {
+//        System.out.println(patron);
+////        patronRepository.findById(patron
+//    }
+
+
+    public Pegi getPegi() {
+        return pegi;
+    }
+
+    public void setPegi(Pegi pegi) {
+        this.pegi = pegi;
     }
 
     public Patron getPatron() {
@@ -80,5 +98,17 @@ public class Pupil {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Pupil{" +
+                "idPupil=" + idPupil +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", pegi=" + pegi +
+                ", patron=" + patron +
+                '}';
     }
 }
