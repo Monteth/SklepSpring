@@ -42,33 +42,19 @@ public class PupilController {
         return new ResponseEntity<>(pupilService.getPupilLimitations(pupilId), HttpStatus.OK);
     }
 
-
-    //save or update, depends on RequestBody id
     @ResponseBody
     @PostMapping
     public ResponseEntity<HttpStatus> postPupil(@RequestBody SimpPupil simpPupil) {
+        System.out.println(simpPupil);
         boolean isSaved = pupilService.saveSimpPupil(simpPupil);
-        return new ResponseEntity<>(isSaved ? HttpStatus.CREATED: HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(isSaved ? HttpStatus.CREATED: HttpStatus.NO_CONTENT);
     }
 
-
-
-
-    //    @Deprecated
-//    @DeleteMapping(path = "/{id}")
-//    @ResponseBody
-//    public ResponseEntity deletePupil(@PathVariable("id") Long id){
-//        pupilRepository.deleteById(id);
-//        return new ResponseEntity(HttpStatus.OK);
-//    }
-
-//    @Deprecated
-//    @GetMapping(path = "/account/pupils/{id}")
-//    @ResponseBody
-//    public ResponseEntity<List<Pupil>> getPupils(@PathVariable(name = "id") String name) {
-//        Long id = Long.valueOf(name);
-//        return new ResponseEntity<>(pupilRepository.findPupilsIdByPatronId(id), HttpStatus.OK);
-//    }
-
-
+    @ResponseBody
+    @PutMapping
+    public ResponseEntity putPupil(@RequestBody SimpPupil simpPupil) {
+        System.out.println(simpPupil);
+        boolean isSaved = pupilService.saveSimpPupil(simpPupil);
+        return new ResponseEntity<>(isSaved ? HttpStatus.OK: HttpStatus.NO_CONTENT);
+    }
 }

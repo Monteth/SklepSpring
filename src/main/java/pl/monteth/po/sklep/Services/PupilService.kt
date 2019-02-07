@@ -2,7 +2,6 @@ package pl.monteth.po.sklep.Services
 
 import org.springframework.stereotype.Service
 import pl.monteth.po.sklep.Models.Limitation
-import pl.monteth.po.sklep.Models.Patron
 import pl.monteth.po.sklep.Models.Pupil
 import pl.monteth.po.sklep.Repositories.LimitationRepository
 import pl.monteth.po.sklep.Repositories.PatronRepository
@@ -40,16 +39,22 @@ class PupilService(
     }
 
     private fun isPupilValid(pupil: Pupil): Boolean {
-        return false
+        return true
     }
 
     fun saveSimpPupil(simpPupil: SimpPupil): Boolean {
-        val pegi = pegiRepository.findById(simpPupil.idPegi)
-        val patron: Optional<Patron> = patronRepository.findById(simpPupil.idPatron)
-        val pupil = Pupil(simpPupil.email, simpPupil.firstName, simpPupil.lastName, pegi.get(), patron.get())
+
+        val pegi = pegiRepository.findById(simpPupil.pegi)
+        val patron = patronRepository.findById(simpPupil.patron)
+        val limitations: Iterable<Limitation> = limitationRepository.findByIdLimitIn(simpPupil.limitations)
+
         var result = false
-        if(isPupilValid(pupil) && pegi.isPresent && patron.isPresent){
-            result = savePupil(pupil)
+        if (pegi.isPresent && patron.isPresent) {
+            val pupil = Pupil(simpPupil.idPupil, simpPupil.email, simpPupil.firstName, simpPupil.lastName, pegi.get(), patron.get(), limitations as MutableList<Limitation>?)
+            if (isPupilValid(pupil)) {
+                println(pupil)
+                result = savePupil(pupil)
+            }
         }
         return result
     }
