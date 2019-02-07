@@ -1,6 +1,7 @@
 package pl.monteth.po.sklep.Controllers;
 
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,8 @@ public class PatronController {
 //        return patronRepository.getPatronByEmail(email);
 //    }
 
+
+//    Is it even useful?
     @ResponseBody
     @DeleteMapping(path = "/{id}")
     public ResponseEntity deletePatron(@PathVariable("id") Long id) {
@@ -52,10 +55,19 @@ public class PatronController {
     }
 
 
-    //save or update, depends on RequestBody id
     @ResponseBody
     @PostMapping
     public ResponseEntity postPatron(@RequestBody Patron patron) {
+        return savePatron(patron);
+    }
+
+    @PutMapping
+    public ResponseEntity putPatron(@RequestBody Patron patron) {
+        return savePatron(patron);
+    }
+
+    @NotNull
+    private ResponseEntity savePatron(@RequestBody Patron patron) {
         ResponseEntity result;
         if (isPatronValid(patron)){
             patronRepository.save(patron);//should i check the output?

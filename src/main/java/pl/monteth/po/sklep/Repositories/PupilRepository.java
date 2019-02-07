@@ -22,5 +22,5 @@ public interface PupilRepository extends CrudRepository<Pupil, Long> {
 //                    "where lr.pupil_id_pupil = ?1",
 //            nativeQuery = true
 //    )
-//    public List<Limitation> findLimitByPupilId(Long id);
+//    public List<Limitation> findLimitByPupilId(Long id);'
 }

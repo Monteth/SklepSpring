@@ -1,9 +1,11 @@
 package pl.monteth.po.sklep.Models;
 
 import com.fasterxml.jackson.annotation.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
-import java.util.Map;
+import java.util.List;
 
 @Entity
 public class Pupil {
@@ -21,13 +23,23 @@ public class Pupil {
 
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@idPegi")
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@pegi")
     private Pegi pegi;
 
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
-    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@idPatron")
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@patron")
     private Patron patron;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "pupil_limitations",
+    joinColumns = {@JoinColumn(name = "pupil_id")},
+    inverseJoinColumns = {@JoinColumn(name = "limit_id")})
+    private List<Limitation> limitations;
 
     public Pupil(String email) {
         this.email = email;
@@ -36,13 +48,25 @@ public class Pupil {
     public Pupil() {
     }
 
-    public Pupil(String email, String firstName, String lastName, Pegi pegi, Patron patron) {
+    public Pupil(Long idPupil, String email, String firstName, String lastName, Pegi pegi, Patron patron, List<Limitation> limitations) {
+        this.idPupil = idPupil;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.pegi = pegi;
         this.patron = patron;
+        this.limitations = limitations;
     }
+
+    public Pupil(String email, String firstName, String lastName, Pegi pegi, Patron patron, List<Limitation> limitations) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pegi = pegi;
+        this.patron = patron;
+        this.limitations = limitations;
+    }
+
 //
 //    @SuppressWarnings("unchecked")
 //    @JsonProperty("patron")
@@ -51,6 +75,14 @@ public class Pupil {
 ////        patronRepository.findById(patron
 //    }
 
+
+    public List<Limitation> getLimitations() {
+        return limitations;
+    }
+
+    public void setLimitations(List<Limitation> limitations) {
+        this.limitations = limitations;
+    }
 
     public Pegi getPegi() {
         return pegi;

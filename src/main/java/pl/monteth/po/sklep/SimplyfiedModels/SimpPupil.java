@@ -1,6 +1,6 @@
 package pl.monteth.po.sklep.SimplyfiedModels;
 
-import pl.monteth.po.sklep.Models.Pegi;
+import java.util.List;
 
 public class SimpPupil {
 
@@ -12,9 +12,29 @@ public class SimpPupil {
 
     private String lastName;
 
-    private Long idPegi;
+    private Long pegi;
 
-    private Long idPatron;
+    private Long patron;
+
+    private List<Long> limitations;
+
+    public SimpPupil(Long idPupil, String email, String firstName, String lastName, Long idPegi, Long idPatron, List<Long> limitations) {
+        this.idPupil = idPupil;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.pegi = idPegi;
+        this.patron = idPatron;
+        this.limitations = limitations;
+    }
+
+    public List<Long> getLimitations() {
+        return limitations;
+    }
+
+    public void setLimitations(List<Long> limitations) {
+        this.limitations = limitations;
+    }
 
     public Long getIdPupil() {
         return idPupil;
@@ -48,19 +68,32 @@ public class SimpPupil {
         this.lastName = lastName;
     }
 
-    public Long getIdPegi() {
-        return idPegi;
+    public Long getPegi() {
+        return pegi;
     }
 
-    public void setIdPegi(Long idPegi) {
-        this.idPegi = idPegi;
+    public void setPegi(Long pegi) {
+        this.pegi = pegi;
     }
 
-    public Long getIdPatron() {
-        return idPatron;
+    public Long getPatron() {
+        return patron;
     }
 
-    public void setIdPatron(Long idPatron) {
-        this.idPatron = idPatron;
+    public void setPatron(Long patron) {
+        this.patron = patron;
+    }
+
+    @Override
+    public String toString() {
+        return "SimpPupil{" +
+                "idPupil=" + idPupil +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", pegi=" + pegi +
+                ", patron=" + patron +
+                ", limitations=" + limitations +
+                '}';
     }
 }
