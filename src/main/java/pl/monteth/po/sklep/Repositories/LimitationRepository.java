@@ -17,4 +17,6 @@ public interface LimitationRepository extends CrudRepository<Limitation, Long> {
             nativeQuery = true
     )
     Iterable<Limitation> findAllByPupilId(long pupilId);
+
+    Iterable<Limitation> findByIdLimitIn(Iterable<Long> ids);
 }
