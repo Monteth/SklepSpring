@@ -42,7 +42,7 @@ Pobierz dane dziecka o indeksie 2
 
 Zapytanie:
 ```
-GET http://localhost:8080/api/pupils/2
+GET /api/pupils/2
 ```
 Odpowiedź:
 ```
