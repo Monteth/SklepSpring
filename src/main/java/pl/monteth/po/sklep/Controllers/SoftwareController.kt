@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.*
 import pl.monteth.po.sklep.Models.Software
 import pl.monteth.po.sklep.Repositories.SoftwareRepository
 
-@CrossOrigin(origins = ["http://localhost:4200"])
+@CrossOrigin(origins = ["http://localhost:3000"])
 @RestController
 @RequestMapping(path = ["/api/software"])
 class SoftwareController @Autowired
 constructor(private val softwareRepository: SoftwareRepository) {
 
-    val DEFAULT_LIMIT = 4
+    val DEFAULT_LIMIT = 40
 
     @GetMapping
     @ResponseBody

@@ -11,7 +11,7 @@ import pl.monteth.po.sklep.Repositories.PatronRepository;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path = "/api/patrons")
 @RestController
 public class PatronController {

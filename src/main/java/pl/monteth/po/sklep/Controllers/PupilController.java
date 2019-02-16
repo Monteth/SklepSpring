@@ -9,7 +9,7 @@ import pl.monteth.po.sklep.Models.Pupil;
 import pl.monteth.po.sklep.Services.PupilService;
 import pl.monteth.po.sklep.SimplyfiedModels.SimpPupil;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path = "/api/pupils")
 @RestController
 public class PupilController {
