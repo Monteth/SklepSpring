@@ -6,6 +6,7 @@ import pl.monteth.po.sklep.Models.Patron;
 
 public interface PatronRepository extends CrudRepository<Patron, Long> {
 
-    public Patron getPatronByEmail(String email);
+//    @Deprecated
+//    public Patron getPatronByEmail(String email);
 
 }
